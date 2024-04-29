@@ -6,4 +6,3 @@
 >
 > - TailwindCSS
 > - daisyUI
-# ExpenseTracker

@@ -1,12 +1,16 @@
+import { useForm } from "react-hook-form";
+
 const Form = () => {
+  const { register, handleSubmit } = useForm();
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit((data) => console.log(data))}>
         <div className="mb-3">
           <label className="block mb-2" htmlFor="description">
             Description
           </label>
           <input
+            {...register("description")}
             id="description"
             type="text"
             placeholder="Description"
@@ -19,6 +23,7 @@ const Form = () => {
             Amount
           </label>
           <input
+            {...register("amount")}
             id="amount"
             type="number"
             placeholder="Amount"
@@ -30,13 +35,16 @@ const Form = () => {
           <label className="block mb-2" htmlFor="category">
             Category
           </label>
-          <select className="select select-bordered w-full max-w-xs">
+          <select
+            {...register("category")}
+            className="select select-bordered w-full max-w-xs"
+          >
             <option disabled selected>
               Category
             </option>
-            <option>Groceries</option>
-            <option>Utilities</option>
-            <option>Entertainment</option>
+            <option value="Groceries">Groceries</option>
+            <option value="Utilities">Utilities</option>
+            <option value="Entertainment">Entertainment</option>
           </select>
         </div>
 

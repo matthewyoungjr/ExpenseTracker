@@ -10,7 +10,7 @@ const Form = () => {
             Description
           </label>
           <input
-            {...register("description")}
+            {...register("description", { required: true })}
             id="description"
             type="text"
             placeholder="Description"
@@ -23,7 +23,7 @@ const Form = () => {
             Amount
           </label>
           <input
-            {...register("amount")}
+            {...register("amount", { required: true })}
             id="amount"
             type="number"
             placeholder="Amount"
@@ -36,7 +36,7 @@ const Form = () => {
             Category
           </label>
           <select
-            {...register("category")}
+            {...register("category", { required: true })}
             className="select select-bordered w-full max-w-xs"
           >
             <option disabled selected>

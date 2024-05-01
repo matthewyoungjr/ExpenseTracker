@@ -1,8 +1,16 @@
-interface TableProps {
-  onDelete?: () => void;
+interface Expense {
+  id: number;
+  description: string;
+  amount: number;
+  category: string;
 }
 
-const Table = ({ onDelete }: TableProps) => {
+interface TableProps {
+  onDelete: (id: number) => void;
+  expenses: Expense[];
+}
+
+const Table = ({ onDelete, expenses }: TableProps) => {
   return (
     <>
       <div className="mt-9 mb-5">
@@ -28,33 +36,22 @@ const Table = ({ onDelete }: TableProps) => {
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
-            <tr className="mb-3">
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Blue</td>
-              <button onClick={onDelete} className="btn btn-error mb-2">
-                Delete
-              </button>
-            </tr>
-            {/* row 2 */}
-            <tr className="mb-3">
-              <td>Hart Hagerty</td>
-              <td>Desktop Support Technician</td>
-              <td>Purple</td>
-              <button onClick={onDelete} className="btn btn-error mb-2">
-                Delete
-              </button>
-            </tr>
-            {/* row 3 */}
-            <tr>
-              <td>Brice Swyre</td>
-              <td>Tax Accountant</td>
-              <td>Red</td>
-              <button onClick={onDelete} className="btn btn-error mb-2">
-                Delete
-              </button>
-            </tr>
+            {/* First Row */}
+            {expenses.map((expense) => (
+              <tr key={expense.id}>
+                <td>{expense.description}</td>
+                <td>{expense.amount}</td>
+                <td>{expense.category}</td>
+                <td>
+                  <button
+                    onClick={() => onDelete(expense.id)}
+                    className="btn btn-error"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

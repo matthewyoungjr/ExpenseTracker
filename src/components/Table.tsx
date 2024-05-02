@@ -11,20 +11,10 @@ interface TableProps {
 }
 
 const Table = ({ onDelete, expenses }: TableProps) => {
+  if (expenses.length === 0) return null;
   return (
     <>
-      <div className="mt-9 mb-5">
-        <select className="select select-bordered w-full max-w-xs">
-          <option disabled selected>
-            All Categories
-          </option>
-          <option>Groceries</option>
-          <option>Utilities</option>
-          <option>Entertainment</option>
-        </select>
-      </div>
-
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto mx-auto">
         <table className="table">
           {/* head */}
           <thead>
@@ -53,6 +43,19 @@ const Table = ({ onDelete, expenses }: TableProps) => {
               </tr>
             ))}
           </tbody>
+          <tfoot>
+            <tr>
+              <td>Total</td>
+              <td>
+                $
+                {expenses
+                  .reduce((acc, curr) => acc + curr.amount, 0)
+                  .toFixed(2)}
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     </>
